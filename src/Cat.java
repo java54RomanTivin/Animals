@@ -7,7 +7,9 @@ public class Cat extends Animals {
 
     @Override
     public String display() {
-        return this.name + " " + this.age + "лет " + " это кот" + "\n";
+        StringBuilder result = new StringBuilder();
+        result.append(this.name).append(" ").append(this.age).append(" это кот").append(". Хозяин: ").append(this.owner.name).append("\n");
+        return result.toString();
     }
 
 }

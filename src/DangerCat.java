@@ -10,7 +10,9 @@ public class DangerCat extends Cat implements DangerAnimal {
 
     @Override
     public String display() {
-        return this.name + " " + this.age + "лет " + " это кот" + description + "\n";
+        StringBuilder result = new StringBuilder();
+        result.append(this.name).append(" ").append(this.age).append(" это кот. ").append(description).append(". Хозяин: ").append(this.owner.name).append("\n");
+        return result.toString();
 
     }
 

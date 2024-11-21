@@ -3,12 +3,12 @@ import java.util.Objects;
 
 public class Hospital {
 
-    String name;
-    private final ArrayList<Hospital.Record> list = new ArrayList<Record>();
+    private final String name;
+    private final ArrayList<Record> list = new ArrayList<Record>();
 
 
-    public Hospital(String name) {
-        this.name = name;
+    private Hospital(Builder builder) {
+        this.name = builder.name;
 
     }
 
@@ -20,11 +20,13 @@ public class Hospital {
         return name;
     }
 
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
+        result.append("Hospital name: " + name + "\n");
         for (int i = 0; i < this.list.size(); i++) {
-            result.append(i + 1).append(". ").append(this.list.get(i).animal.name).append(" ").append(this.list.get(i).animal.age).append(". Хозяин: ").append(this.list.get(i).animal.owner.name).append("\n");
+            result.append(i + 1).append(". ").append(list.get(i).animal.display()).append("\n");
         }
         return result.toString();
     }
@@ -42,16 +44,36 @@ public class Hospital {
 
 
 
-    public static class Record {
-        protected Animals animal;
+public static class Record {
+    protected Animals animal;
 
-        public Record(Animals animal) {
-            this.animal = animal;
-        }
+    public Record(Animals animal) {
+        this.animal = animal;
+    }
 
-        @Override
-        public String toString() {
-            return this.animal.getName() + "\n";
-        }
+    @Override
+    public String toString() {
+        return this.animal.getName() + "\n";
     }
 }
+
+public static class Builder {
+
+    String name;
+
+    public Builder(String name) {
+        this.name = name;
+    }
+
+    public Builder setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Hospital build() {
+        return new Hospital(this);
+    }
+
+}
+}
+

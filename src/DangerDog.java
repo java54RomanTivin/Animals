@@ -10,7 +10,10 @@ public class DangerDog extends Dog implements DangerAnimal {
 
     @Override
     public String display() {
-        return this.name + " " + this.age + "лет " + " это собака." + description + "\n";
+
+        StringBuilder result = new StringBuilder();
+        result.append(this.name).append(" ").append(this.age).append(" это собака. ").append(description).append(". Хозяин: ").append(this.owner.name).append("\n");
+        return result.toString();
 
     }
 
